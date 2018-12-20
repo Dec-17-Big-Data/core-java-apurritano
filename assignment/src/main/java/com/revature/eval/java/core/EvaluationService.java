@@ -3,6 +3,7 @@ package com.revature.eval.java.core;
 import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class EvaluationService {
 
@@ -31,7 +32,15 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		StringBuilder genAcroym = new StringBuilder();
+		
+		for (int count = 0; count < phrase.length(); count++) {
+			genAcroym.append(phrase.charAt(0));
+				if(phrase.charAt(count) == ' ') {
+					genAcroym.append(phrase.charAt(count));
+				}
+		}
+		return genAcroym.toString();
 	}
 
 	/**
@@ -85,17 +94,28 @@ public class EvaluationService {
 
 		public boolean isEquilateral() {
 			// TODO Write an implementation for this method declaration
-			return false;
+			if((sideOne==sideTwo) &&  (sideTwo==sideThree))
+				return true;
+			else
+				return false;
 		}
 
 		public boolean isIsosceles() {
 			// TODO Write an implementation for this method declaration
-			return false;
+			if(sideOne==sideTwo && sideOne!=sideThree 
+				|| sideOne!=sideTwo && sideOne==sideThree 
+				||sideOne!=sideTwo && sideTwo==sideThree)
+				return true;
+			else
+				return false;
 		}
 
 		public boolean isScalene() {
 			// TODO Write an implementation for this method declaration
-			return false;
+			if(sideOne!=sideTwo && sideOne!=sideTwo && sideTwo!=sideThree)
+				return true;
+			else
+				return false;
 		}
 
 	}
@@ -117,7 +137,15 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		final int[] Letter_Value = {
+				 1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,10
+		};
+		
+		int score = 0;
+			for (char letter: string.toCharArray()) {
+				score += getScrabbleScore(letter);
+			}
+		return score;
 	}
 
 	/**
